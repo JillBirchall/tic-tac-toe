@@ -1,6 +1,7 @@
 const gameOptionsList = document.getElementById("gameOptionsList");
 const gameOption = document.querySelectorAll("[data-game-option]");
 const gameContainer = document.getElementById("gameContainer");
+const gameBoard = document.getElementById("gameBoard");
 const squaresDisplay = document.querySelectorAll("[data-square]");
 const gameInfoDisplay = document.getElementById("gameInfo");
 const newGameBtn = document.getElementById("newGameBtn");
@@ -10,6 +11,7 @@ let difficulty = "";
 let currentPlayer = 1;
 let gameInProgress = false;
 let isPlayerTurn = true;
+let winningLines = [];
 
 gameOption.forEach((option) => {
   option.addEventListener("click", (e) => {
@@ -168,6 +170,7 @@ function makeHardComputerMove() {
     if (isSquareEmpty(i)) {
       if (isWinningMove(i, "X")) {
         makeMove("O", document.querySelector(`[data-square="${i}"]`));
+        winningLines = []; //the move is to counter the winning line, so reset all saved winning lines.
         return;
       }
     }
@@ -189,6 +192,8 @@ function makeMove(piece, squareClicked) {
 
 //Checks if the game board contains a winning line for the specified piece
 function checkWin(piece, board) {
+  let isWinningLine = false;
+
   //Horizontal Row
   for (let i = 0; i < 9; i += 3) {
     if (
@@ -196,26 +201,31 @@ function checkWin(piece, board) {
       board[i + 1] === piece &&
       board[i + 2] === piece
     ) {
-      return true;
+      winningLines.push(`row-${i / 3 + 1}`);
+      isWinningLine = true;
     }
   }
 
   //Vertical Columns
   for (let i = 0; i < 3; i++) {
     if (board[i] == piece && board[i + 3] === piece && board[i + 6] === piece) {
-      return true;
+      winningLines.push(`column-${i + 1}`);
+      isWinningLine = true;
     }
   }
 
   //Diagonal Lines
-  if (
-    (board[0] === piece && board[4] === piece && board[8] === piece) ||
-    (board[2] === piece && board[4] === piece && board[6] === piece)
-  ) {
-    return true;
+  if (board[0] === piece && board[4] === piece && board[8] === piece) {
+    winningLines.push("diagonal-1");
+    isWinningLine = true;
   }
 
-  return false;
+  if (board[2] === piece && board[4] === piece && board[6] === piece) {
+    winningLines.push("diagonal-2");
+    isWinningLine = true;
+  }
+
+  return isWinningLine;
 }
 
 function checkDraw() {
@@ -233,7 +243,27 @@ function updateTurnInfo(player) {
 function endGame(winner) {
   gameInProgress = false;
   winner === "DRAW" ? displayDraw() : displayWinner();
+  if (winner !== "DRAW") {
+    animateWinningLines();
+  }
   newGameBtn.classList.remove("hidden");
+}
+
+function animateWinningLines() {
+  winningLines.forEach((winningLine) => {
+    let lineAnimation = document.createElement("div");
+    gameBoard.appendChild(lineAnimation);
+    lineAnimation.classList.add("line");
+    lineAnimation.classList.add(winningLine);
+  });
+}
+
+function resetWinningLines() {
+  winningLines = [];
+  let winningLineElements = document.getElementsByClassName("line");
+  while (winningLineElements.length > 0) {
+    winningLineElements[0].parentNode.removeChild(winningLineElements[0]);
+  }
 }
 
 function displayDraw() {
@@ -259,6 +289,7 @@ function displayWinner() {
 }
 
 function resetGame() {
+  resetWinningLines();
   clearBoard();
   displayGameOptions();
   grid = [];

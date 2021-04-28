@@ -1,5 +1,5 @@
 :root {
-  --square-size: 100px;
+  --square-size: 90px;
   --x-color: #7500fb;
   --o-color: #00a8ff;
   --grid-color: #00f8e7;
@@ -125,6 +125,10 @@
 }
 
 @media (orientation: landscape) and (max-height: 600px) {
+  :root {
+    --square-size: 75px;
+  }
+
   .title {
     font-size: 28px;
   }
@@ -146,16 +150,16 @@
     grid-area: game-board;
   }
 
-  .square {
-    --square-size: 75px;
-  }
-
   .new-game-btn {
     grid-area: "new-game-btn";
   }
 }
 
 @media (min-width: 1700px) and (min-height: 900px) {
+  :root {
+    --square-size: 120px;
+  }
+
   .title {
     font-size: 68px;
   }
@@ -164,10 +168,6 @@
     font-size: 36px;
     height: 60px;
     margin: 50px 0;
-  }
-
-  .square {
-    --square-size: 150px;
   }
 
   .new-game-btn {
@@ -180,4 +180,59 @@
 
 .hidden {
   display: none;
+}
+
+.line {
+  --length: 3;
+  position: absolute;
+  height: 5px;
+  background-color: #0011f8;
+  width: 1px;
+  animation: drawLine 1s 1 forwards;
+  border-radius: 5px;
+  transform-origin: left;
+}
+
+div[class*="1"] {
+  --distance: calc(var(--square-size) * 0.5);
+}
+
+div[class*="2"] {
+  --distance: calc(var(--square-size) * 1.5 + var(--grid-line-size));
+}
+
+div[class*="3"] {
+  --distance: calc(var(--square-size) * 2.5 + calc(var(--grid-line-size) * 2));
+}
+
+div[class*="row"] {
+  top: var(--distance);
+}
+
+div[class*="column"] {
+  transform: rotate(90deg);
+  left: var(--distance);
+}
+
+div[class*="diagonal"] {
+  --length: 4;
+}
+
+.diagonal-1 {
+  transform: rotate(45deg) translateX(calc(var(--square-size) / 10));
+}
+
+.diagonal-2 {
+  left: calc(var(--square-size) * 3);
+  transform: rotate(135deg) translateX(calc(var(--square-size) / 10));
+}
+
+@keyframes drawLine {
+  0% {
+    width: 1px;
+  }
+
+  100% {
+    width: calc(var(--square-size) * var(--length));
+  }
 }

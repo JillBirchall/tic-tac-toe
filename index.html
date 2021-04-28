@@ -1,40 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Quicksand:wght@500&family=Varela+Round&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&family=Quicksand:wght@500&family=Varela+Round&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
     <script src="script.js" defer></script>
     <title>Tic Tac Toe</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <h1 class="title">Tic Tac Toe</h1>
-        <ul class="game-options-list" id="gameOptionsList">
-            <li class="game-option" data-game-option="2-player">2 Player</li>
-            <li class="game-option" data-game-option="easy">Easy</li>
-            <li class="game-option" data-game-option="medium">Medium</li>
-            <li class="game-option" data-game-option="hard">Difficult</li>
-        </ul>
-        <div class="game-container hidden" id="gameContainer">
+      <h1 class="title">Tic Tac Toe</h1>
+      <ul class="game-options-list" id="gameOptionsList">
+        <li class="game-option" data-game-option="2-player">2 Player</li>
+        <li class="game-option" data-game-option="easy">Easy</li>
+        <li class="game-option" data-game-option="medium">Medium</li>
+        <li class="game-option" data-game-option="hard">Difficult</li>
+      </ul>
+      <div class="game-container hidden" id="gameContainer">
         <div class="game-info" id="gameInfo"></div>
-        <div class="game-board">
-            <div class="square" data-square="0"></div>
-            <div class="square" data-square="1"></div>
-            <div class="square" data-square="2"></div>
-            <div class="square" data-square="3"></div>
-            <div class="square" data-square="4"></div>
-            <div class="square" data-square="5"></div>
-            <div class="square" data-square="6"></div>
-            <div class="square" data-square="7"></div>
-            <div class="square" data-square="8"></div>
+        <div class="game-board" id="gameBoard">
+          <!-- <div class="line row-1"></div> -->
+          <div class="square" data-square="0"></div>
+          <div class="square" data-square="1"></div>
+          <div class="square" data-square="2"></div>
+          <div class="square" data-square="3"></div>
+          <div class="square" data-square="4"></div>
+          <div class="square" data-square="5"></div>
+          <div class="square" data-square="6"></div>
+          <div class="square" data-square="7"></div>
+          <div class="square" data-square="8"></div>
         </div>
         <button class="new-game-btn hidden" id="newGameBtn">New Game</button>
+      </div>
     </div>
-    </div>
-</body>
+  </body>
 </html>
