@@ -84,10 +84,8 @@ function playerTurn(squareClicked) {
   makeMove(currentPiece, squareClicked);
 
   if (checkWin(currentPiece, grid)) {
-    console.log("Player Wins!");
     endGame(currentPiece);
   } else if (checkDraw()) {
-    console.log("Draw");
     endGame("DRAW");
   } else {
     if (isTwoPlayer) {
@@ -102,7 +100,6 @@ function playerTurn(squareClicked) {
 }
 
 function computerTurn() {
-  console.log("Computer Turn");
   switch (difficulty) {
     case "easy":
       makeEasyComputerMove();
