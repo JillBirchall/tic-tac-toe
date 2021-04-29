@@ -170,7 +170,6 @@ function makeHardComputerMove() {
     if (isSquareEmpty(i)) {
       if (isWinningMove(i, "X")) {
         makeMove("O", document.querySelector(`[data-square="${i}"]`));
-        winningLines = []; //the move is to counter the winning line, so reset all saved winning lines.
         return;
       }
     }
@@ -182,7 +181,9 @@ function makeHardComputerMove() {
 function isWinningMove(square, piece) {
   let tempgrid = [...grid];
   tempgrid[square] = piece;
-  return checkWin(piece, tempgrid);
+  let isWin = checkWin(piece, tempgrid);
+  winningLines = []; //Clear any winning lines as these will be added later if needed, and may be incorrect if an opponent's move was countered
+  return isWin;
 }
 
 function makeMove(piece, squareClicked) {
