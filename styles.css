@@ -9,6 +9,9 @@
   --grid-line-size: 3px;
   --btn-colour: #0011f8;
   --hover-colour: #00f8e7;
+  --title-font: "Quicksand", Arial, sans-serif;
+  --main-font: "Montserrat", Arial, sans-serif;
+  --piece-font: "Varela Round", Arial, sans-serif;
 }
 
 *,
@@ -31,7 +34,7 @@
 }
 
 .title {
-  font-family: "Quicksand", sans-serif;
+  font-family: var(--title-font);
   font-weight: 500;
   font-size: 48px;
   color: var(--title-colour);
@@ -44,7 +47,7 @@
 
 .game-option {
   list-style: none;
-  font-family: "Montserrat", sans-serif;
+  font-family: var(--main-font);
   font-size: 24px;
   margin-top: 20px;
   color: var(--text-colour);
@@ -63,7 +66,7 @@
   margin: 30px 0;
   color: var(--text-colour);
   font-size: 24px;
-  font-family: "Montserrat", sans-serif;
+  font-family: var(--main-font);
 }
 
 .game-board {
@@ -82,7 +85,7 @@
   height: var(--square-size);
   width: var(--square-size);
   background-color: var(--background-colour);
-  font-family: "Varela Round", sans-serif;
+  font-family: var(--piece-font);
 }
 
 .X,
@@ -112,7 +115,7 @@
   width: 150px;
   height: 40px;
   color: black;
-  font-family: "Quicksand", sans-serif;
+  font-family: var(--title-font);
   font-size: 24px;
   background-color: var(--x-colour);
   border: none;
